@@ -15,7 +15,7 @@ def updateLog():
         del log[0:5]
 
         # Regex pattern for valid chat message
-        pattern = re.compile('[A-Z][a-z]{2} [0-9]{1,2}, [0-9]{4} [0-9]{1,2}:[0-9]{2} [A-Z]{2},.*')
+        pattern = re.compile('([A-Z][a-z]{2} [0-9]{1,2}, [0-9]{4} [0-9]{1,2}:[0-9]{2} [A-Z]{2}).*')
 
         # Loop through log file and write to final txt output
         for x in log:
