@@ -1,7 +1,6 @@
-from datetime import datetime
 import re
-import sanitize_logs
 import pandas as pd
+import sanitize_logs
 
 # Ask user input to update logs
 while True:
@@ -13,24 +12,24 @@ while True:
     else:
         print('Please enter valid input')
 
-lines = []
-with open('Talk_logs.txt', 'r') as f:
-    for line in f:
-        lines.append(line)
-
-df = pd.DataFrame(columns=['date', 'user', 'message'])
-
+# Regex Patterns
 date_pattern = re.compile('[A-Z][a-z]{2} [0-9]{1,2}, [0-9]{4} [0-9]{1,2}:[0-9]{2} [A-Z]{2}')
 
-for i in range(len(lines)):
-    date = pd.to_datetime(date_pattern.search(lines[i]).group())
-    user = 'user'
-    message = 'message'
-    
-    df.loc[i] = pd.Series({
-        'date':date,
-        'user':user,
-        'message':message
-    })
+# Empty array
+lines = []
 
-print(df)
+# Loop through each line in final logs
+with open('Talk_logs.txt', 'r') as f:
+    for line in f:
+        # Split user and message
+        user = line.split('M, ')[1].split(' : ')[0]
+        message = line.split('M, ')[1].split(' : ')[1]
+        # Use regex to get date and convert to pd datetime obj
+        date = pd.to_datetime(date_pattern.search(line).group())
+
+        # Add dictionary to empty list
+        lines.append({
+            'date': date,
+            'user': user,
+            'message': message
+        })
