@@ -23,14 +23,21 @@ lines = []
 # Loop through each line in final logs
 with open('Talk_logs.txt', 'r') as f:
     for line in f:
-        if 'joined this chat room.' in line:
-            # Split user and message
-            user = line.split('M, ')[1].split(' joined')[0]
-            message = line.split('M, ')[1].split(' joined')[1]
+        if 'joined this chatroom.' in line:
+            user = line.split('M: ')[1].split(' joined')[0]
+            message = 'Announce: JOINED THE CHAT'
+        elif 'left this chatroom.' in line:
+            user = line.split('M: ')[1].split(' left this chatroom.')[0]
+            message = 'Announce: LEFT THE CHAT.'
+        elif 'has been assigned as the admin' in line:
+            user = line.split('M: ')[1].split(' has been assigned as the admin.')[0]
+            message = 'Announce: ASSIGNED AS ADMIN.'
+        elif 'The host has been reassigned' in line or 'This message has been hidden by the chatroom managers.':
+            continue
         else:
-            # Split user and message
             user = line.split('M, ')[1].split(' : ')[0]
             message = line.split('M, ')[1].split(' : ')[1]
+
         # Use regex to get date and convert to pd datetime obj
         date = pd.to_datetime(date_pattern.search(line).group())
 
@@ -40,10 +47,6 @@ with open('Talk_logs.txt', 'r') as f:
             'user': user,
             'message': message
         })
-
-# user_list = set()
-# for line in lines:
-#     user_list.add(line['user'])
 
 df = pd.DataFrame(lines)
 
