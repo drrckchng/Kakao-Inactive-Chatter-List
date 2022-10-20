@@ -1,2 +1,5 @@
 # Kakao-Inactive-Chatter-List
-Gathers list of inactive chatters from a Kakao Open Chat log
+Return a list of inactive chatters from Kakao Open Chat logs
+
+By default, inactive period is set to 30 days.
+Not super well versed in Pandas so script is a little slow...
