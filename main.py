@@ -58,8 +58,22 @@ df = pd.DataFrame(lines)
 end_date = lines[-1]['date']
 start_date = end_date - timedelta(days=30)
 
+# Get list of all users and active users
 users = pd.unique(df['user'].to_list())
 active_users = pd.unique(df[df['date'].between(start_date, end_date)]['user'].to_list())
 
+# Get all inactive users
 inactive_users = list(set(users) - set(active_users))
+
+# Missing Users
+missing_users = []
+
+# Remove users who have left
+for user in inactive_users:
+    if df[df['user'] == user].iloc[-1]['message'] == 'Announce: LEFT THE CHAT.' or df[df['user'] == user].iloc[-1]['message'] == 'Announce: REMOVED FROM CHAT.':
+        missing_users.append(user)
+
+# Remove missing users from list
+inactive_users = list(set(inactive_users) - set(missing_users))
+
 print(inactive_users)
