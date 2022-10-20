@@ -25,14 +25,18 @@ with open('Talk_logs.txt', 'r') as f:
     for line in f:
         if 'joined this chatroom.' in line:
             user = line.split('M: ')[1].split(' joined')[0]
-            message = 'Announce: JOINED THE CHAT'
+            message = 'Announce: JOINED THE CHAT.'
         elif 'left this chatroom.' in line:
             user = line.split('M: ')[1].split(' left this chatroom.')[0]
             message = 'Announce: LEFT THE CHAT.'
         elif 'has been assigned as the admin' in line:
             user = line.split('M: ')[1].split(' has been assigned as the admin.')[0]
             message = 'Announce: ASSIGNED AS ADMIN.'
-        elif 'The host has been reassigned' in line or 'This message has been hidden by the chatroom managers.':
+        elif 'has been removed from this chatroom' in line:
+            user = line.split('M: ')[1].split(' has been removed from this chatroom.')[0]
+            message = 'Announce: REMOVED FROM CHAT.'
+
+        elif 'The host has been reassigned' in line or 'This message has been hidden by the chatroom managers.' in line:
             continue
         else:
             user = line.split('M, ')[1].split(' : ')[0]
@@ -55,7 +59,6 @@ end_date = lines[-1]['date']
 start_date = end_date - timedelta(days=30)
 
 users = pd.unique(df['user'].to_list())
-
 active_users = pd.unique(df[df['date'].between(start_date, end_date)]['user'].to_list())
 
 inactive_users = list(set(users) - set(active_users))
