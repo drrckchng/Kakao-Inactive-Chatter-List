@@ -1,4 +1,4 @@
-# Kakao-Inactive-Chatter-List
+# Kakao Inactive Chatter List
 Return a list of inactive chatters from Kakao Open Chat logs.
 
 Often times, Kakao Open Chat rooms felt daunting due to the amount of people in them. However, many of these users are actually inactive and just stay in the room.
