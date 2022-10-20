@@ -7,6 +7,7 @@ This script was created to help in moderation of a Kakao Open Chat where we try 
 
 ## Configuration
 By default, inactive period is set to 30 days.
+
 This can be changed by modifying the `timedelta`
 ```
 start_date = end_date - timedelta(days=30)
@@ -14,6 +15,7 @@ start_date = end_date - timedelta(days=30)
 
 ## Usage
 To run this script extract the contents Kakao Chat log archive into to `logs/` directory.
+
 Files MUST be ordered by time in the `logs/`
 
 After organizing the chat logs, simply run:
