@@ -14,9 +14,9 @@ start_date = end_date - timedelta(days=30)
 ```
 
 ## Usage
-To run this script extract the contents Kakao Chat log archive into to `logs/` directory.
+To run this script, extract the contents of a Kakao Chat log archive into `logs/` directory.
 
-Files MUST be ordered by time in the `logs/`
+Files MUST be ordered sequentially in the `logs/` directory.
 
 After organizing the chat logs, simply run:
 ```
@@ -26,6 +26,6 @@ python main.py
 ## Warnings
 This script has not been tested with Korean logs.
 
-My Kakao is set in English and automated messages are in English. For Korean (or other language) users, you might need to modify the conditional statements to account for the different messages.
+My Kakao app is set in English and thus the automated messages are in English. For Korean (or any other language) users, you might need to modify the conditional statements to account for the different messages.
 
 Date format could also be different depending on region. You would need to modify the RegEx to select the date properly.
