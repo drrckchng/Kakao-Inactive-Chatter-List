@@ -35,8 +35,7 @@ with open('Talk_logs.txt', 'r') as f:
         elif 'has been removed from this chatroom' in line:
             user = line.split('M: ')[1].split(' has been removed from this chatroom.')[0]
             message = 'Announce: REMOVED FROM CHAT.'
-
-        elif 'The host has been reassigned' in line or 'This message has been hidden by the chatroom managers.' in line:
+        elif 'The host has been reassigned' in line or 'This message has been hidden by the chatroom managers.' in line or 'is no longer an admin' in line:
             continue
         else:
             user = line.split('M, ')[1].split(' : ')[0]
