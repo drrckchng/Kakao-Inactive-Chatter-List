@@ -23,6 +23,7 @@ lines = []
 # Loop through each line in final logs
 with open('Talk_logs.txt', 'r') as f:
     for line in f:
+        print(line)
         if 'joined this chatroom.' in line:
             user = line.split('M: ')[1].split(' joined')[0]
             message = 'Announce: JOINED THE CHAT.'
