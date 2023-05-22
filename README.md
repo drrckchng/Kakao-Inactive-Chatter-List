@@ -5,6 +5,10 @@ Often times, Kakao Open Chat rooms felt daunting due to the amount of people in 
 
 This script was created to help in moderation of a Kakao Open Chat where we try to encourage active user participation.
 
+# Requirements
+
+Pandas
+
 ## Configuration
 By default, inactive period is set to 30 days.
 
