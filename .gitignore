@@ -3,3 +3,4 @@ logs/
 Kakaotalk_Chat_*.zip
 Talk_*.txt
 .DS_Store
+.venv/
