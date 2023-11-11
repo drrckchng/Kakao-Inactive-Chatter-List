@@ -1,6 +1,7 @@
 from datetime import timedelta
 import re
 import pandas as pd
+import numpy as np
 import sanitize_logs
 
 # Ask user input to update logs
@@ -23,7 +24,6 @@ lines = []
 # Loop through each line in final logs
 with open('Talk_logs.txt', 'r') as f:
     for line in f:
-        print(line)
         if 'joined this chatroom.' in line:
             user = line.split('M: ')[1].split(' joined')[0]
             message = 'Announce: JOINED THE CHAT.'
@@ -56,11 +56,11 @@ df = pd.DataFrame(lines)
 
 # Dates
 end_date = lines[-1]['date']
-start_date = end_date - timedelta(days=30)
+start_date = end_date - timedelta(days=28)
 
 # Get list of all users and active users
-users = pd.unique(df['user'].to_list())
-active_users = pd.unique(df[df['date'].between(start_date, end_date)]['user'].to_list())
+users = df['user'].str.strip().unique()
+active_users = df[df['date'].between(start_date, end_date)]['user'].str.strip().unique()
 
 # Get all inactive users
 inactive_users = list(set(users) - set(active_users))
