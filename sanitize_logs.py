@@ -1,12 +1,13 @@
 import os
 import re
+from natsort import natsorted
 
 def updateLog():
     # Open consolidated log file
     final_log_txt= open('Talk_logs.txt', 'w')
 
     # Loop through all log files in logs/ directory
-    for filename in sorted(os.listdir('logs/'), key=str.lower):
+    for filename in natsorted(os.listdir('logs/'), key=str.lower):
         # Read log file (testing)
         log_txt = open('logs/' + filename, 'r')
         log = log_txt.readlines()
