@@ -70,7 +70,12 @@ missing_users = []
 
 # Remove users who have left
 for user in inactive_users:
-    if df[df['user'] == user].iloc[-1]['message'] == 'Announce: LEFT THE CHAT.' or df[df['user'] == user].iloc[-1]['message'] == 'Announce: REMOVED FROM CHAT.':
+    last_message = ''
+    if df[df['user'] == user].shape[0] == 0:
+        last_message = 'Announce: JOINED CHAT.'
+    else:
+        last_message = df[df['user'] == user]['message'].iloc[-1] 
+    if last_message == 'Announce: LEFT THE CHAT.' or last_message == 'Announce: REMOVED FROM CHAT.' or last_message == 'Announce: JOINED CHAT.':
         missing_users.append(user)
 
 # Remove missing users from list
